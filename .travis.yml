@@ -23,3 +23,17 @@ after_success:
   - docker push bariyard/multi-nginx 
   - docker push bariyard/multi-server
   - docker push bariyard/multi-worker
+
+# notify aws by using Dockerrun.aws.json
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: ap-southeast-1
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-ap-southeast-1-564975338089
+  bucket_path: MultiDocker-env
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY

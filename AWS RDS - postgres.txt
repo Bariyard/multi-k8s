@@ -1,0 +1,25 @@
+AWS RDS - postgres
+username: postgres
+password: postgrespassword
+
+
+REDIS_HOST
+multi-docker-redis.xttl9q.0001.apse1.cache.amazonaws.com
+
+REDIS_PORT
+6379
+
+PGUSER
+postgres
+
+PGPASSWORD
+postgrespassword
+
+PGHOST
+multi-docker-postgres.c8hxmscnukjb.ap-southeast-1.rds.amazonaws.com
+
+PGPORT
+5432
+
+PGDATABASE
+fibvalues
