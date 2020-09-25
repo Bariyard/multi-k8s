@@ -1,0 +1,16 @@
+language: generic
+sudo: required
+services:
+  - docker
+before_install:
+  # using encrypt version of gcloud credential 
+  # delete original service-account.json after encrypted
+  - openssl aes-256-cbc -K $encrypted_9f3b5599b056_key -iv $encrypted_9f3b5599b056_iv -in service-account.json.enc -out service-account.json -d
+  # step 1 install google cloud SDK 
+  # > apply configuration 
+  # > update kubectl
+  # > give access for travis to gcloud account
+  - curl https://sdk.google.cloud.com | bash > /dev/null;
+  - source $HOME/google-cloud-sdk/path.bash.inc
+  - gcloud components update kubectl
+  - gcloud auth activate-service-account --key-file service-account.json
