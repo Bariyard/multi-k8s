@@ -8,12 +8,12 @@ function FibComponent() {
 
   const fetchValues = async () => {
     const res = await axios.get("/api/values/current");
-    setValues(res.data);
+    setValues(res.data || {});
   };
 
   const fetchIndexes = async () => {
     const res = await axios.get("/api/values/all");
-    setSeenIndexes(res.data);
+    setSeenIndexes(res.data || []);
   };
 
   useEffect(() => {
@@ -22,7 +22,7 @@ function FibComponent() {
   },[]);
 
   const renderSeenIndexes = () => {
-    return seenIndexes.map(({ number }) => number + ", ");
+    return seenIndexes.length > 0 ? seenIndexes.map(({ number }) => number + ", ") : '0';
   };
 
   const renderValue = () => {

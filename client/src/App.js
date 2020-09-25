@@ -13,7 +13,7 @@ function App() {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
-            Edit <code>src/App.js</code> and save to reload. Learn React
+            Edit <code>src/App.js</code> Fib Calculator Version 2
           </p>
           <br />
           <Link to="/">home</Link>
