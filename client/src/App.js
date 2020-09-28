@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
@@ -7,6 +7,9 @@ import OtherPageComponent from "./pages/other-pages.component";
 import FibComponent from "./components/fib.component";
 
 function App() {
+  useEffect(() => {
+    console.log('re rendered')
+  },[])
   return (
     <Router>
       <div className="App">

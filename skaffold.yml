@@ -5,25 +5,25 @@ build:
     push: false
   artifacts:
     - image: bariyard/multi-client
-      context: client
+      context: ./client
       docker:
-        dockerfile: ./Dockerfile.dev
+        dockerfile: Dockerfile.dev
       sync:
         infer:
           - '**/*.js'
           - '**/*.css'
           - '**/*.html'
     - image: bariyard/multi-server
-      context: server
+      context: ./server
       docker:
-        dockerfile: ./Dockerfile.dev
+        dockerfile: Dockerfile.dev
       sync:
         infer:
           - '**/*.js'
     - image: bariyard/multi-worker
-      context: worker
+      context: ./worker
       docker:
-        dockerfile: ./Dockerfile.dev
+        dockerfile: Dockerfile.dev
       sync:
         infer:
           - '**/*.js'
