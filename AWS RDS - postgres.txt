@@ -23,3 +23,6 @@ PGPORT
 
 PGDATABASE
 fibvalues
+
+-- create password Secert in Kubernate env ---
+kubectl create secret generic pgpassword --from-literal PGPASSWORD=mypassword
