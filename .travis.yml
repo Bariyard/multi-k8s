@@ -7,38 +7,38 @@ env:
     - SHA=$(git rev-parse HEAD)
     # disable gcloud user input
     - CLOUDSDK_CORE_DISABLE_PROMPTS=1
-before_install:
-  # using encrypt version of gcloud credential 
-  # delete original service-account.json after encrypted
-  - openssl aes-256-cbc -K $encrypted_9f3b5599b056_key -iv $encrypted_9f3b5599b056_iv -in service-account.json.enc -out service-account.json -d
+# before_install:
+#   # using encrypt version of gcloud credential 
+#   # delete original service-account.json after encrypted
+#   - openssl aes-256-cbc -K $encrypted_9f3b5599b056_key -iv $encrypted_9f3b5599b056_iv -in service-account.json.enc -out service-account.json -d
 
-  # step 1 install google cloud SDK 
-  # > apply configuration 
-  # > update kubectl
-  # > give access for travis to gcloud account
-  # > tell gcloud what project to work on
-  # > tell google cloud which cluster we work on
-  - curl https://sdk.google.cloud.com | bash > /dev/null;
-  - source $HOME/google-cloud-sdk/path.bash.inc
-  - gcloud components update kubectl
-  - gcloud auth activate-service-account --key-file service-account.json
-  - gcloud config set project multi-k8s-290605
-  - gcloud config set compute/zone asia-southeast1-b
-  - gcloud container clusters get-credentials multi-cluster
+#   # step 1 install google cloud SDK 
+#   # > apply configuration 
+#   # > update kubectl
+#   # > give access for travis to gcloud account
+#   # > tell gcloud what project to work on
+#   # > tell google cloud which cluster we work on
+#   - curl https://sdk.google.cloud.com | bash > /dev/null;
+#   - source $HOME/google-cloud-sdk/path.bash.inc
+#   - gcloud components update kubectl
+#   - gcloud auth activate-service-account --key-file service-account.json
+#   - gcloud config set project multi-k8s-290605
+#   - gcloud config set compute/zone asia-southeast1-b
+#   - gcloud container clusters get-credentials multi-cluster
 
-  # step 2 Login to Docker CLI using env setup on travis
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+#   # step 2 Login to Docker CLI using env setup on travis
+#   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
-  # build the test version of "react-client"
-  - docker build -t bariyard/react-test -f ./client/Dockerfile.dev ./client
+#   # build the test version of "react-client"
+#   - docker build -t bariyard/react-test -f ./client/Dockerfile.dev ./client
 
 # run test
 script:
   - docker run -e CI=true bariyard/react-test npm test
 
 # custom deploy to gcloud kubernates
-deploy:
-  provider: script
-  script: bash ./deploy.sh
-  on:
-    branch: master
+# deploy:
+#   provider: script
+#   script: bash ./deploy.sh
+#   on:
+#     branch: master
