@@ -29,8 +29,8 @@ env:
 #   # step 2 Login to Docker CLI using env setup on travis
 #   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
-#   # build the test version of "react-client"
-#   - docker build -t bariyard/react-test -f ./client/Dockerfile.dev ./client
+  # build the test version of "react-client"
+  - docker build -t bariyard/react-test -f ./client/Dockerfile.dev ./client
 
 # run test
 script:
