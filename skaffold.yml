@@ -27,11 +27,19 @@ build:
       sync:
         infer:
           - '**/*.js'
+    - image: bariyard/multi-graphql-server
+      context: ./graphql-server
+      docker:
+        dockerfile: Dockerfile.dev
+      sync:
+        infer:
+          - '**/*.js'
 deploy:
   kubectl:
     manifests:
       - k8s/client-deployment.yml
       - k8s/server-deployment.yml
       - k8s/worker-deployment.yml
+      - k8s/graphql-server-deployment.yml
       - k8s/client-cluster-ip-service.yml
       - k8s/server-cluster-ip-service.yml

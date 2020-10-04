@@ -14,6 +14,8 @@ services:
     image: "postgres:latest"
     environment:
       - POSTGRES_PASSWORD=postgrespassword
+    ports: 
+      - "5432:5432"
   redis:
     image: "redis:latest"
   api:
@@ -52,4 +54,22 @@ services:
       - ./worker:/app
     environment: 
       - REDIS_HOST=redis
-      - REDIS_PORT=6379  
+      - REDIS_PORT=6379 
+  graphql:
+    depends_on: 
+      - postgres
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./graphql-server
+    volumes:
+      - /app/node_modules
+      - ./graphql-server:/app
+    environment: 
+      - PGUSER=postgres
+      - PGHOST=postgres
+      - PGDATABASE=postgres
+      - PGPASSWORD=postgrespassword
+      - PGPORT=5432
+    ports: 
+      - "4000:4000"
+    

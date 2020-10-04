@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: server-deployment
+  name: graphql-server-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      component: server
+      component: graphql-server
   template:
     metadata:
       labels:
-        component: server
+        component: graphql-server
     spec:
       containers:
         - name: server
-          image: bariyard/multi-server
+          image: bariyard/multi-graphql-server
           ports:
-            - containerPort: 5000
+            - containerPort: 4000
           env:
             - name: REDIS_HOST
               value: redis-cluster-ip-service

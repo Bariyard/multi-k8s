@@ -1,0 +1,20 @@
+{
+  "name": "graphql-server",
+  "version": "1.0.0",
+  "description": "graphql server for tutorial",
+  "main": "index.js",
+  "author": "bariyard",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon"
+  },
+  "dependencies": {
+    "@prisma/client": "2.3.0",
+    "graphql-yoga": "^1.18.3",
+    "nodemon": "1.18.3"
+  },
+  "devDependencies": {
+    "@prisma/cli": "2.3.0"
+  }
+}
